@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ExternalLink, Github, TrendingUp, Clock, Users, Terminal, GitBranch, Database } from 'lucide-react';
 
@@ -43,7 +42,7 @@ spec:
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t app:${BUILD_NUMBER} .'
+        sh 'docker build -t app:v1.2.3 .'
       }
     }
     stage('Deploy') {
