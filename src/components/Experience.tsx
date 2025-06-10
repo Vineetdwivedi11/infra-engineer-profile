@@ -5,41 +5,36 @@ import { MapPin, Calendar, Briefcase } from 'lucide-react';
 const Experience = () => {
   const experiences = [
     {
-      title: 'Senior DevOps Engineer',
-      company: 'TechCorp Solutions',
-      location: 'San Francisco, CA',
-      period: '2022 - Present',
-      description: [
-        'Led migration of legacy applications to cloud-native architecture, reducing infrastructure costs by 40%',
-        'Implemented GitOps workflows with ArgoCD, improving deployment reliability and rollback capabilities',
-        'Built comprehensive monitoring and alerting systems serving 50+ microservices'
-      ],
-      technologies: ['AWS', 'Kubernetes', 'Terraform', 'GitLab CI', 'Prometheus']
-    },
-    {
       title: 'DevOps Engineer',
-      company: 'InnovateTech',
-      location: 'Austin, TX',
-      period: '2020 - 2022',
+      company: 'C3ihub, IIT Kanpur',
+      location: 'Kanpur, Uttar Pradesh, India',
+      period: '2021 - Present',
       description: [
-        'Designed and maintained CI/CD pipelines for 20+ development teams',
-        'Automated infrastructure provisioning using Terraform and Ansible',
-        'Reduced deployment time from hours to minutes through pipeline optimization'
+        'Designed and optimized CI/CD pipeline using Jenkins, reducing deployment times by 40%, thereby enhancing software delivery speed and reliability',
+        'Automated infrastructure provisioning with Terraform, ensuring consistent,scalable, and repeatable deployments across multiple environments.'  ,
+        'Integrated monitoring and observability tools, including Prometheus, Grafana, the ELK Stack, and AWS CloudWatch, enabling proactive issue detection and real-time performance tracking.',
+        'Optimized system performance and scalability through resource tuning and comprehensive load testing, resulting in improved system stability and user experience.',
+        'Deployed containerized applications using Docker and Kubernetes, enhancing application portability, management, and scalability.',
+        'Extensive hands-on experience with AWS services, including EC2, S3, RDS, VPC, ELB, EBS, Auto Scaling, and CloudWatch, to manage and optimize cloud infrastructure effectively.',
+        'Implemented and managed Infrastructure as Code (IaC), leveraging tools like Terraform to streamline cloud resource configuration, reduce errors, and ensure consistency across environments.',
+        'Collaborated closely with cross-functional teams to enforce best practices in continuous integration, deployment automation, and system reliability, aligning technical efforts with business objectives.',
+        'Strong problem-solving and analytical skills, complemented by excellent interpersonal and communication abilities, facilitating effective collaboration and resolution of complex technical challenges.'
       ],
-      technologies: ['Azure', 'Docker', 'Jenkins', 'Ansible', 'Grafana']
+      technologies: ['Docker','Kubernetes','AWS']
     },
-    {
-      title: 'Junior DevOps Engineer',
-      company: 'StartupXYZ',
-      location: 'Remote',
-      period: '2019 - 2020',
-      description: [
-        'Containerized monolithic applications using Docker and Kubernetes',
-        'Implemented automated testing and deployment processes',
-        'Maintained and optimized cloud infrastructure on multiple platforms'
-      ],
-      technologies: ['GCP', 'Docker', 'GitHub Actions', 'ELK Stack']
-    }
+    // {
+    //   title: 'DevOps Engineer',
+    //   company: 'InnovateTech',
+    //   location: 'Austin, TX',
+    //   period: '2020 - 2022',
+    //   description: [
+    //     'Designed and maintained CI/CD pipelines for 20+ development teams',
+    //     'Automated infrastructure provisioning using Terraform and Ansible',
+    //     'Reduced deployment time from hours to minutes through pipeline optimization'
+    //   ],
+    //   technologies: ['Azure', 'Docker', 'Jenkins', 'Ansible', 'Grafana']
+    // },
+    
   ];
 
   return (

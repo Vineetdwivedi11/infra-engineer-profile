@@ -7,27 +7,27 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'alex.rodriguez@email.com',
-      href: 'mailto:alex.rodriguez@email.com'
+      value: 'dvineet9@gmail.com',
+      href: 'mailto:dvineet9@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567'
+      value: '+91-9918596093',
+      href: 'tel:+919918596093'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'San Francisco, CA',
+      value: 'Kanpur, Uttar Pradesh, India',
       href: '#'
     }
   ];
 
   const socialLinks = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Twitter, href: '#', label: 'Twitter' }
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/vineetdwivedi11/', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/vineetdwivedi11', label: 'GitHub' },
+    { icon: Twitter, href: 'https://x.com/dvineet9', label: 'Twitter' }
   ];
 
   return (
@@ -54,7 +54,7 @@ const Contact = () => {
                   <input 
                     type="text" 
                     className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="John"
+                    placeholder=""
                   />
                 </div>
                 <div>
@@ -62,7 +62,7 @@ const Contact = () => {
                   <input 
                     type="text" 
                     className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
-                    placeholder="Doe"
+                    placeholder=""
                   />
                 </div>
               </div>
@@ -72,7 +72,7 @@ const Contact = () => {
                 <input 
                   type="email" 
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="john.doe@company.com"
+                  placeholder=""
                 />
               </div>
               
@@ -81,7 +81,7 @@ const Contact = () => {
                 <input 
                   type="text" 
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
-                  placeholder="DevOps Consultation"
+                  placeholder=""
                 />
               </div>
               
