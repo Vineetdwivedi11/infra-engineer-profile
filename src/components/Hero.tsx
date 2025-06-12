@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Terminal, Code, Server, GitBranch, Cpu } from 'lucide-react';
+import { ChevronDown, Terminal, Code, Server, GitBranch, Cpu, Download } from 'lucide-react';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
@@ -59,6 +59,16 @@ const Hero = () => {
     return () => clearInterval(typeInterval);
   }, [currentIndex]);
 
+  const handleResumeDownload = () => {
+    // This will work once you upload your resume file to the public folder
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Change this to match your uploaded resume filename
+    link.download = 'Vineet_Dwivedi_DevOps_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden">
       {/* Matrix rain background */}
@@ -105,12 +115,12 @@ const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <span className="ml-4 text-green-400 text-sm">alex@devops-machine:~$</span>
+              <span className="ml-4 text-green-400 text-sm">vineet@devops-machine:~$</span>
             </div>
             <div className="text-green-400 text-sm">
               <span className="text-gray-400"># Initializing DevOps Engineer profile...</span><br/>
               <span className="text-blue-400">whoami</span><br/>
-              <span className="text-white">alex.rodriguez</span><br/>
+              <span className="text-white">vineet.dwivedi</span><br/>
               <span className="text-blue-400">cat /etc/specialization</span><br/>
               <span className="text-white">kubernetes | docker | terraform | aws</span>
             </div>
@@ -122,7 +132,7 @@ const Hero = () => {
         </h1>
         
         <div className="h-20 mb-8 bg-black rounded-lg border border-green-400 p-4 font-mono text-left">
-          <div className="text-green-400 text-sm mb-2">alex@k8s-master:~$ </div>
+          <div className="text-green-400 text-sm mb-2">vineet@k8s-master:~$ </div>
           <span className="text-green-400 font-mono text-lg">
             {displayText}
             <span className="animate-pulse text-green-400">█</span>
@@ -159,7 +169,11 @@ const Hero = () => {
           <button className="bg-green-600 hover:bg-green-700 text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 border border-green-400">
             ./view-projects.sh
           </button>
-          <button className="border border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300">
+          <button 
+            onClick={handleResumeDownload}
+            className="border border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 flex items-center gap-2 justify-center"
+          >
+            <Download className="w-4 h-4" />
             curl -O resume.pdf
           </button>
         </div>
