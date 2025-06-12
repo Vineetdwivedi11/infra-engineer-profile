@@ -248,3 +248,263 @@ html {
 .code-number {
   color: #f59e0b;
 }
+
+/* Mobile and Tablet Responsive Styles */
+@media (max-width: 768px) {
+  /* Hero Section Mobile Styles */
+  .hero-title {
+    font-size: 2.5rem !important;
+    line-height: 1.2;
+  }
+  
+  .hero-terminal {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .hero-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Matrix rain - reduce on mobile for performance */
+  .matrix-char {
+    display: none;
+  }
+  
+  .matrix-char:nth-child(3n) {
+    display: block;
+    font-size: 0.75rem;
+  }
+  
+  /* Floating icons - hide some on mobile */
+  .floating-icon:nth-child(even) {
+    display: none;
+  }
+  
+  /* Skills Section Mobile */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .skill-card {
+    padding: 1rem;
+  }
+  
+  .skill-title {
+    font-size: 0.875rem;
+  }
+  
+  /* Projects Section Mobile */
+  .project-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .project-terminal {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+  
+  /* Experience Section Mobile */
+  .experience-timeline {
+    padding-left: 1rem;
+  }
+  
+  .experience-dot {
+    left: -0.5rem;
+  }
+  
+  .experience-content {
+    margin-left: 1rem;
+    padding: 1rem;
+  }
+  
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  /* Contact Form Mobile */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-form {
+    padding: 1rem;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Terminal windows mobile adjustments */
+  .terminal-window {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  
+  .terminal-content {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+  
+  /* Font size adjustments for mobile readability */
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .mobile-text-xs {
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablet Specific Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .project-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* Tablet terminal adjustments */
+  .hero-terminal {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+/* Large Mobile Landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    padding: 2rem 0;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-padding {
+    padding: 3rem 0;
+  }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .terminal-window {
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .skill-card,
+  .project-card,
+  .experience-content {
+    padding: 0.75rem;
+  }
+  
+  .contact-form {
+    padding: 0.75rem;
+  }
+  
+  /* Smaller buttons on very small screens */
+  .hero-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Reduce spacing */
+  .section-padding {
+    padding: 2rem 0;
+  }
+  
+  .container-padding {
+    padding: 0 0.75rem;
+  }
+}
+
+/* Touch improvements for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .hover-scale:hover {
+    transform: none;
+  }
+  
+  .hover-effect:hover {
+    transform: none;
+  }
+  
+  /* Make buttons more touch-friendly */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Larger tap targets for links */
+  a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .matrix-char {
+    transform: translateZ(0);
+  }
+  
+  .floating-icon {
+    transform: translateZ(0);
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-delayed,
+  .animate-matrix-rain,
+  .animate-terminal-blink,
+  .animate-glitch {
+    animation: none;
+  }
+  
+  .matrix-char {
+    display: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
