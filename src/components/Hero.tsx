@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronDown, Terminal, Code, Server, GitBranch, Cpu, Download } from 'lucide-react';
 
@@ -58,16 +57,6 @@ const Hero = () => {
 
     return () => clearInterval(typeInterval);
   }, [currentIndex]);
-
-  const handleResumeDownload = () => {
-    // This will work once you upload your resume file to the public folder
-    const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Change this to match your uploaded resume filename
-    link.download = 'Vineet_Dwivedi_DevOps_Resume.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <section className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden">

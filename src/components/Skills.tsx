@@ -13,7 +13,7 @@ const Skills = () => {
         { name: 'Kubernetes', level: 95 },
         { name: 'Docker', level: 98 },
         { name: 'AWS EKS', level: 90 },
-        { name: 'Helm Charts', level: 85 }
+        // { name: 'Helm Charts', level: 85 }
       ]
     },
     {
@@ -25,7 +25,7 @@ const Skills = () => {
         { name: 'Terraform', level: 92 },
         { name: 'Ansible', level: 88 },
         { name: 'CloudFormation', level: 80 },
-        { name: 'Pulumi', level: 75 }
+        // { name: 'Pulumi', level: 75 }
       ]
     },
     {
@@ -37,7 +37,7 @@ const Skills = () => {
         { name: 'Jenkins', level: 90 },
         { name: 'GitLab CI', level: 95 },
         { name: 'GitHub Actions', level: 88 },
-        { name: 'ArgoCD', level: 85 }
+        // { name: 'ArgoCD', level: 85 }
       ]
     },
     {
@@ -49,7 +49,7 @@ const Skills = () => {
         { name: 'Prometheus', level: 90 },
         { name: 'Grafana', level: 92 },
         { name: 'ELK Stack', level: 85 },
-        { name: 'Jaeger', level: 80 }
+        // { name: 'Jaeger', level: 80 }
       ]
     },
     {
@@ -61,7 +61,7 @@ const Skills = () => {
         { name: 'HashiCorp Vault', level: 85 },
         { name: 'SAST/DAST', level: 82 },
         { name: 'OWASP', level: 88 },
-        { name: 'Falco', level: 75 }
+        // { name: 'Falco', level: 75 }
       ]
     },
     {
@@ -159,9 +159,9 @@ const Skills = () => {
           <div className="bg-black border border-green-400 rounded-lg p-6 font-mono text-green-400 text-xs inline-block">
             <pre>{`
     ╔══════════════════════════════════════╗
-    ║           SYSTEM STATUS: ONLINE      ║
+    ║          SYSTEM STATUS: ONLINE       ║
     ║     All services running optimally   ║
-    ║        Load avg: 0.15, 0.10, 0.05   ║
+    ║       Load avg: 0.15, 0.10, 0.05     ║
     ╚══════════════════════════════════════╝
             `}</pre>
           </div>
