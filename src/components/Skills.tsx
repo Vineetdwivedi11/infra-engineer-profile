@@ -79,7 +79,7 @@ const Skills = () => {
   ];
 
   return (
-    <section className="py-20 bg-black">
+    <section id="skills" className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <div className="bg-slate-900 border border-green-400 rounded-lg p-4 mb-8 font-mono inline-block">
@@ -93,7 +93,7 @@ const Skills = () => {
             <span className="text-green-400">./</span>technical<span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">_arsenal</span><span className="text-green-400">.sh</span>
           </h2>
           <p className="text-xl text-green-400 max-w-3xl mx-auto font-mono">
-            <span className="text-gray-400"># </span>Battle-tested tools and technologies for modern DevOps
+            <span className="text-gray-400"># </span>Tools I use daily across 5+ years of production work
           </p>
         </div>
 
@@ -128,26 +128,12 @@ const Skills = () => {
                   </div>
                 </div>
                 
-                <div className="space-y-3 font-mono">
+                <div className="flex flex-wrap gap-2 font-mono">
                   {category.skills.map((skill) => (
-                    <div key={skill.name} className="space-y-1">
-                      <div className="flex justify-between text-sm">
-                        <span className="text-slate-300">{skill.name}</span>
-                        <span className="text-green-400">{skill.level}%</span>
-                      </div>
-                      <div className="w-full bg-slate-700 rounded-full h-2">
-                        <div 
-                          className="bg-gradient-to-r from-green-400 to-blue-500 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${skill.level}%` }}
-                        ></div>
-                      </div>
-                    </div>
+                    <span key={skill.name} className="px-3 py-1 bg-black border border-gray-700 text-slate-200 rounded text-sm">
+                      {skill.name}
+                    </span>
                   ))}
-                </div>
-                
-                <div className="mt-4 text-xs font-mono text-gray-400">
-                  <span className="text-green-400"># </span>
-                  uptime: {Math.floor(Math.random() * 1000 + 500)} days
                 </div>
               </div>
             </div>

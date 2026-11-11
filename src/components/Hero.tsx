@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ChevronDown, Terminal, Code, Server, GitBranch, Cpu, Download } from 'lucide-react';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [matrixChars, setMatrixChars] = useState<string[]>([]);
-  
   const titles = [
     'kubectl get pods --all-namespaces',
     'terraform apply -auto-approve', 
@@ -20,48 +18,39 @@ const Hero = () => {
     'pipeline {\n  agent any\n  stages {'
   ];
 
-  // Matrix rain effect
-  useEffect(() => {
+  // Matrix rain: generated once, animated with CSS only (no re-render timer)
+  const matrixChars = useMemo(() => {
     const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    const interval = setInterval(() => {
-      setMatrixChars(prev => {
-        const newChars = [...prev];
-        if (newChars.length < 50) {
-          newChars.push(chars[Math.floor(Math.random() * chars.length)]);
-        } else {
-          newChars.shift();
-          newChars.push(chars[Math.floor(Math.random() * chars.length)]);
-        }
-        return newChars;
-      });
-    }, 100);
-
-    return () => clearInterval(interval);
+    return Array.from({ length: 50 }, () => chars[Math.floor(Math.random() * chars.length)]);
   }, []);
 
   useEffect(() => {
     const currentTitle = titles[currentIndex];
     let charIndex = 0;
-    
+    let pause: ReturnType<typeof setTimeout> | undefined;
+
     const typeInterval = setInterval(() => {
       if (charIndex <= currentTitle.length) {
         setDisplayText(currentTitle.slice(0, charIndex));
         charIndex++;
       } else {
         clearInterval(typeInterval);
-        setTimeout(() => {
+        pause = setTimeout(() => {
           setCurrentIndex((prev) => (prev + 1) % titles.length);
         }, 3000);
       }
     }, 80);
 
-    return () => clearInterval(typeInterval);
+    return () => {
+      clearInterval(typeInterval);
+      if (pause) clearTimeout(pause);
+    };
   }, [currentIndex]);
 
   const handleResumeDownload = () => {
     // This will work once you upload your resume file to the public folder
     const link = document.createElement('a');
-    link.href = 'https://drive.google.com/file/d/1iTSqx9MxuxmLqAo-KgMoe-etNMYr0nxm/view?usp=drive_link'; // Change this to match your uploaded resume filename
+    link.href = 'https://drive.google.com/uc?export=download&id=1iTSqx9MxuxmLqAo-KgMoe-etNMYr0nxm';
     link.download = 'Vineet_Dwivedi_DevOps_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -69,9 +58,9 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gradient-to-br from-black via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden">
+    <section className="min-h-screen pt-14 bg-gradient-to-br from-black via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden">
       {/* Matrix rain background */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {matrixChars.map((char, index) => (
           <span
             key={index}
@@ -121,13 +110,14 @@ const Hero = () => {
               <span className="text-blue-400">whoami</span><br/>
               <span className="text-white">vineet.dwivedi</span><br/>
               <span className="text-blue-400">cat /etc/specialization</span><br/>
-              <span className="text-white">kubernetes | docker | terraform | aws</span>
+              <span className="text-white">kubernetes | docker | terraform | aws | ci/cd</span>
             </div>
           </div>
         </div>
         
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-mono">
-          root@<span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">devops</span>:~#
+          <span className="sr-only">Vineet Dwivedi, Freelance DevOps Engineer</span>
+          <span aria-hidden="true">root@<span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">devops</span>:~#</span>
         </h1>
         
         <div className="h-20 mb-8 bg-black rounded-lg border border-green-400 p-4 font-mono text-left">
@@ -138,36 +128,32 @@ const Hero = () => {
           </span>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          <div className="bg-black border border-gray-700 rounded-lg p-4 font-mono text-left">
-            <div className="text-blue-400 text-sm mb-2"># docker-stats.sh</div>
-            <div className="text-green-400 text-xs">
-              CONTAINER&nbsp;&nbsp;&nbsp;&nbsp;CPU&nbsp;&nbsp;&nbsp;&nbsp;MEM<br/>
-              web-app&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12.5%&nbsp;&nbsp;256MB<br/>
-              database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8.3%&nbsp;&nbsp;&nbsp;512MB<br/>
-              redis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1%&nbsp;&nbsp;&nbsp;64MB
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 font-mono">
+          {[
+            ['5+', 'Years in DevOps'],
+            ['AWS', 'EC2, EKS, RDS, VPC'],
+            ['K8s', 'Docker & Kubernetes'],
+            ['IaC', 'Terraform & Ansible'],
+          ].map(([v, l]) => (
+            <div key={l} className="bg-black border border-gray-700 rounded-lg p-4">
+              <div className="text-2xl font-bold text-green-400">{v}</div>
+              <div className="text-slate-300 text-xs mt-1">{l}</div>
             </div>
-          </div>
-          <div className="bg-black border border-gray-700 rounded-lg p-4 font-mono text-left">
-            <div className="text-purple-400 text-sm mb-2"># k8s-cluster-info</div>
-            <div className="text-green-400 text-xs">
-              Nodes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3/3&nbsp;Ready<br/>
-              Pods:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;47/50&nbsp;Running<br/>
-              Services:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;Active<br/>
-              Uptime:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;99.9%
-            </div>
-          </div>
+          ))}
         </div>
-        
-        <p className="text-xl text-green-400 mb-12 max-w-3xl mx-auto leading-relaxed font-mono">
-          <span className="text-gray-400">//</span> Crafting resilient infrastructure with code<br/>
-          <span className="text-gray-400">//</span> One pipeline at a time 🚀
+
+        <p className="text-lg md:text-xl text-green-400 mb-12 max-w-3xl mx-auto leading-relaxed font-mono">
+          <span className="text-gray-400">//</span> Freelance DevOps Engineer with 5+ years of experience<br/>
+          <span className="text-gray-400">//</span> I build reliable, automated, cost-efficient cloud infrastructure
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-green-600 hover:bg-green-700 text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 border border-green-400">
+          <a href="#projects" className="bg-green-600 hover:bg-green-700 text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 border border-green-400 text-center">
             ./view-projects.sh
-          </button>
+          </a>
+          <a href="#contact" className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 border border-gray-600 text-center">
+            ./hire-me.sh
+          </a>
           <button 
             onClick={handleResumeDownload}
             className="border border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 flex items-center gap-2 justify-center"

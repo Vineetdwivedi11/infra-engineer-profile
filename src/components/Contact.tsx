@@ -1,8 +1,19 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
 
 const Contact = () => {
+  const [form, setForm] = useState({ first: '', last: '', email: '', subject: '', message: '' });
+  const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setForm({ ...form, [k]: e.target.value });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = form.subject || 'Project enquiry';
+    const body = `Name: ${form.first} ${form.last}\nEmail: ${form.email}\n\n${form.message}`;
+    window.location.href = `mailto:dvineet9@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   const contactInfo = [
     {
       icon: Mail,
@@ -31,14 +42,14 @@ const Contact = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-800">
+    <section id="contact" className="py-20 bg-slate-800">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Let's <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Connect</span>
           </h2>
           <p className="text-xl text-slate-400 max-w-3xl mx-auto">
-            Ready to discuss your next DevOps challenge? Let's build something amazing together.
+            I'm taking on new freelance and contract clients. Tell me about your infrastructure and I'll reply within 24 hours.
           </p>
         </div>
 
@@ -47,19 +58,21 @@ const Contact = () => {
           <div className="bg-slate-900 rounded-xl p-8 border border-slate-700">
             <h3 className="text-2xl font-bold text-white mb-6">Send a Message</h3>
             
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-slate-300 mb-2 font-medium">First Name</label>
-                  <input 
+                  <label htmlFor="c-first" className="block text-slate-300 mb-2 font-medium">First Name</label>
+                  <input
+                    id="c-first" value={form.first} onChange={set('first')} required
                     type="text" 
                     className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
                     placeholder=""
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 mb-2 font-medium">Last Name</label>
-                  <input 
+                  <label htmlFor="c-last" className="block text-slate-300 mb-2 font-medium">Last Name</label>
+                  <input
+                    id="c-last" value={form.last} onChange={set('last')}
                     type="text" 
                     className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
                     placeholder=""
@@ -68,26 +81,29 @@ const Contact = () => {
               </div>
               
               <div>
-                <label className="block text-slate-300 mb-2 font-medium">Email</label>
-                <input 
-                  type="email" 
+                <label htmlFor="c-email" className="block text-slate-300 mb-2 font-medium">Email</label>
+                  <input
+                    id="c-email" value={form.email} onChange={set('email')} required
+                    type="email" 
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
                   placeholder=""
                 />
               </div>
               
               <div>
-                <label className="block text-slate-300 mb-2 font-medium">Subject</label>
-                <input 
-                  type="text" 
+                <label htmlFor="c-subject" className="block text-slate-300 mb-2 font-medium">Subject</label>
+                  <input
+                    id="c-subject" value={form.subject} onChange={set('subject')}
+                    type="text" 
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors"
                   placeholder=""
                 />
               </div>
               
               <div>
-                <label className="block text-slate-300 mb-2 font-medium">Message</label>
+                <label htmlFor="c-message" className="block text-slate-300 mb-2 font-medium">Message</label>
                 <textarea 
+                  id="c-message" value={form.message} onChange={set('message')} required
                   rows={5}
                   className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors resize-none"
                   placeholder="Tell me about your project..."
@@ -138,6 +154,8 @@ const Contact = () => {
                   <a 
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 bg-slate-900 border border-slate-700 rounded-lg hover:border-slate-600 hover:bg-slate-800 transition-all duration-300 group"
                     aria-label={social.label}
                   >

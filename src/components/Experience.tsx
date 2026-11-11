@@ -8,19 +8,17 @@ const Experience = () => {
       title: 'DevOps Engineer',
       company: 'C3ihub, IIT Kanpur',
       location: 'Kanpur, Uttar Pradesh, India',
-      period: '2021 - Present',
+      period: '2021 - Present (5+ years)',
       description: [
-        'Designed and optimized CI/CD pipeline using Jenkins, reducing deployment times by 40%, thereby enhancing software delivery speed and reliability',
-        'Automated infrastructure provisioning with Terraform, ensuring consistent,scalable, and repeatable deployments across multiple environments.'  ,
-        'Integrated monitoring and observability tools, including Prometheus, Grafana, the ELK Stack, and AWS CloudWatch, enabling proactive issue detection and real-time performance tracking.',
-        'Optimized system performance and scalability through resource tuning and comprehensive load testing, resulting in improved system stability and user experience.',
-        'Deployed containerized applications using Docker and Kubernetes, enhancing application portability, management, and scalability.',
-        'Extensive hands-on experience with AWS services, including EC2, S3, RDS, VPC, ELB, EBS, Auto Scaling, and CloudWatch, to manage and optimize cloud infrastructure effectively.',
-        'Implemented and managed Infrastructure as Code (IaC), leveraging tools like Terraform to streamline cloud resource configuration, reduce errors, and ensure consistency across environments.',
-        'Collaborated closely with cross-functional teams to enforce best practices in continuous integration, deployment automation, and system reliability, aligning technical efforts with business objectives.',
-        'Strong problem-solving and analytical skills, complemented by excellent interpersonal and communication abilities, facilitating effective collaboration and resolution of complex technical challenges.'
+        'Designed and optimized Jenkins CI/CD pipelines, reducing deployment times by 40% and improving release reliability.',
+        'Automated multi-environment infrastructure provisioning with Terraform, giving consistent, repeatable and scalable deployments.',
+        'Deployed and operated containerized applications on Docker and Kubernetes for better portability and scalability.',
+        'Managed AWS infrastructure end to end: EC2, S3, RDS, VPC, ELB, EBS, Auto Scaling and CloudWatch.',
+        'Built monitoring and observability with Prometheus, Grafana, the ELK Stack and CloudWatch for proactive issue detection.',
+        'Tuned resources and ran load tests to improve system stability, performance and scalability.',
+        'Worked with cross-functional teams to enforce CI/CD, deployment automation and reliability best practices.'
       ],
-      technologies: ['Docker','Kubernetes','AWS']
+      technologies: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'Jenkins', 'Prometheus', 'Grafana', 'ELK']
     },
     // {
     //   title: 'DevOps Engineer',
@@ -38,14 +36,14 @@ const Experience = () => {
   ];
 
   return (
-    <section className="py-20 bg-slate-900">
+    <section id="experience" className="py-20 bg-slate-900">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Professional <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Journey</span>
           </h2>
           <p className="text-xl text-slate-400">
-            Building robust infrastructure and enabling development teams to ship faster
+            5+ years of building robust infrastructure and helping teams ship faster
           </p>
         </div>
 
