@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
+import { Mail, MapPin, Linkedin, Github, Twitter } from 'lucide-react';
 
 const Contact = () => {
   const [form, setForm] = useState({ first: '', last: '', email: '', subject: '', message: '' });
@@ -20,12 +20,6 @@ const Contact = () => {
       label: 'Email',
       value: 'dvineet9@gmail.com',
       href: 'mailto:dvineet9@gmail.com'
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+91-9918596093',
-      href: 'tel:+919918596093'
     },
     {
       icon: MapPin,
