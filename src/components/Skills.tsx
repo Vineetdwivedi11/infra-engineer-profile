@@ -124,7 +124,6 @@ const Skills = () => {
                     <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors font-mono">
                       {category.title}
                     </h3>
-                    <span className="text-2xl">{category.ascii}</span>
                   </div>
                 </div>
                 
@@ -140,18 +139,6 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* ASCII Art Footer */}
-        <div className="mt-16 text-center">
-          <div className="bg-black border border-green-400 rounded-lg p-6 font-mono text-green-400 text-xs inline-block">
-            <pre>{`
-    ╔══════════════════════════════════════╗
-    ║          SYSTEM STATUS: ONLINE       ║
-    ║     All services running optimally   ║
-    ║       Load avg: 0.15, 0.10, 0.05     ║
-    ╚══════════════════════════════════════╝
-            `}</pre>
-          </div>
-        </div>
       </div>
     </section>
   );

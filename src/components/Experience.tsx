@@ -39,39 +39,40 @@ const Experience = () => {
     <section id="experience" className="py-20 bg-slate-900">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Professional <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Journey</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-mono">
+            <span className="text-green-400">~/</span>experience<span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">_log</span>
           </h2>
-          <p className="text-xl text-slate-400">
+          <p className="text-lg md:text-xl text-green-400 font-mono">
+            <span className="text-gray-400"># </span>
             5+ years of building robust infrastructure and helping teams ship faster
           </p>
         </div>
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-500"></div>
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-green-400 to-blue-500"></div>
           
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <div key={exp.title} className="relative flex items-start">
                 {/* Timeline Dot */}
-                <div className="absolute left-6 w-4 h-4 bg-blue-500 rounded-full border-4 border-slate-900 z-10"></div>
+                <div className="absolute left-6 w-4 h-4 bg-green-400 rounded-full border-4 border-slate-900 z-10"></div>
                 
                 {/* Content */}
-                <div className="ml-20 bg-slate-800 rounded-xl p-6 border border-slate-700 hover:border-slate-600 transition-all duration-300 w-full group">
+                <div className="ml-20 bg-black rounded-xl p-6 border border-gray-700 hover:border-green-400 transition-all duration-300 w-full group">
                   <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
                     <div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                      <h3 className="text-2xl font-bold text-white font-mono group-hover:text-green-400 transition-colors">
                         {exp.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-blue-400 font-semibold text-lg mt-1">
+                      <div className="flex items-center gap-2 text-green-400 font-semibold text-lg mt-1">
                         <Briefcase className="w-4 h-4" />
                         {exp.company}
                       </div>
                     </div>
                     
-                    <div className="flex flex-col md:items-end gap-2 mt-2 md:mt-0">
-                      <div className="flex items-center gap-2 text-slate-400">
+                    <div className="flex flex-col md:items-end gap-2 mt-3 md:mt-0">
+                      <div className="flex items-center gap-2 text-slate-300">
                         <Calendar className="w-4 h-4" />
                         {exp.period}
                       </div>
@@ -85,7 +86,7 @@ const Experience = () => {
                   <ul className="space-y-2 mb-6">
                     {exp.description.map((item, i) => (
                       <li key={i} className="text-slate-300 flex items-start">
-                        <span className="text-blue-400 mr-2 mt-1">•</span>
+                        <span className="text-green-400 mr-2 mt-1">•</span>
                         {item}
                       </li>
                     ))}
@@ -95,7 +96,7 @@ const Experience = () => {
                     {exp.technologies.map((tech) => (
                       <span 
                         key={tech}
-                        className="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm hover:bg-slate-600 transition-colors"
+                        className="px-3 py-1 bg-green-600/20 text-green-400 border border-green-600/30 rounded font-mono text-sm hover:bg-green-600/30 transition-colors"
                       >
                         {tech}
                       </span>

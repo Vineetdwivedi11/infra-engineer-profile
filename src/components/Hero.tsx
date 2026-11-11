@@ -1,31 +1,37 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ChevronDown, Terminal, Code, Server, GitBranch, Cpu, Download } from 'lucide-react';
+import { ChevronDown, Download, ArrowRight } from 'lucide-react';
+
+const TITLES = [
+  'terraform apply -auto-approve',
+  'kubectl rollout status deploy/web',
+  'docker compose up -d --scale web=3',
+  'ansible-playbook deploy.yml -i inventory',
+];
+
+const STATS = [
+  ['5+', 'Years in DevOps'],
+  ['AWS', 'EC2, EKS, RDS, VPC'],
+  ['K8s', 'Docker & Kubernetes'],
+  ['IaC', 'Terraform & Ansible'],
+];
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const titles = [
-    'kubectl get pods --all-namespaces',
-    'terraform apply -auto-approve', 
-    'docker-compose up -d --scale web=3',
-    'ansible-playbook deploy.yml -i inventory'
-  ];
 
-  const codeSnippets = [
-    '#!/bin/bash\necho "Deploying to production..."',
-    'apiVersion: apps/v1\nkind: Deployment',
-    'FROM node:18-alpine\nWORKDIR /app',
-    'pipeline {\n  agent any\n  stages {'
-  ];
-
-  // Matrix rain: generated once, animated with CSS only (no re-render timer)
-  const matrixChars = useMemo(() => {
+  // Matrix rain: generated once, positioned at the edges so it never sits behind text
+  const rain = useMemo(() => {
     const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    return Array.from({ length: 50 }, () => chars[Math.floor(Math.random() * chars.length)]);
+    return Array.from({ length: 28 }, (_, i) => ({
+      ch: chars[Math.floor(Math.random() * chars.length)],
+      left: i % 2 === 0 ? 2 + ((i * 7) % 14) : 84 + ((i * 5) % 14),
+      top: (i * 13) % 96,
+      delay: (i * 0.23).toFixed(2),
+    }));
   }, []);
 
   useEffect(() => {
-    const currentTitle = titles[currentIndex];
+    const currentTitle = TITLES[currentIndex];
     let charIndex = 0;
     let pause: ReturnType<typeof setTimeout> | undefined;
 
@@ -35,11 +41,9 @@ const Hero = () => {
         charIndex++;
       } else {
         clearInterval(typeInterval);
-        pause = setTimeout(() => {
-          setCurrentIndex((prev) => (prev + 1) % titles.length);
-        }, 3000);
+        pause = setTimeout(() => setCurrentIndex((prev) => (prev + 1) % TITLES.length), 2500);
       }
-    }, 80);
+    }, 70);
 
     return () => {
       clearInterval(typeInterval);
@@ -48,7 +52,6 @@ const Hero = () => {
   }, [currentIndex]);
 
   const handleResumeDownload = () => {
-    // This will work once you upload your resume file to the public folder
     const link = document.createElement('a');
     link.href = 'https://drive.google.com/uc?export=download&id=1iTSqx9MxuxmLqAo-KgMoe-etNMYr0nxm';
     link.download = 'Vineet_Dwivedi_DevOps_Resume.pdf';
@@ -58,115 +61,92 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen pt-14 bg-gradient-to-br from-black via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden">
-      {/* Matrix rain background */}
+    <section
+      id="top-section"
+      className="min-h-screen pt-20 pb-16 bg-gradient-to-br from-black via-slate-900 to-slate-800 flex items-center justify-center relative overflow-hidden"
+    >
+      {/* Matrix rain (edges only) */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        {matrixChars.map((char, index) => (
+        {rain.map((r, i) => (
           <span
-            key={index}
-            className="absolute text-green-400 font-mono text-sm opacity-20 animate-pulse"
-            style={{
-              left: `${(index * 3) % 100}%`,
-              top: `${(index * 7) % 100}%`,
-              animationDelay: `${index * 0.1}s`
-            }}
+            key={i}
+            className="absolute text-green-400 font-mono text-sm opacity-20 motion-safe:animate-pulse"
+            style={{ left: `${r.left}%`, top: `${r.top}%`, animationDelay: `${r.delay}s` }}
           >
-            {char}
+            {r.ch}
           </span>
         ))}
       </div>
+      <div className="absolute inset-0 bg-grid-pattern opacity-5" aria-hidden="true"></div>
 
-      {/* Background Grid Pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-      
-      {/* Floating Tech Icons */}
-      <div className="absolute top-20 left-20 animate-float">
-        <Terminal className="w-8 h-8 text-green-400 opacity-60" />
-      </div>
-      <div className="absolute top-40 right-32 animate-float-delayed">
-        <GitBranch className="w-6 h-6 text-blue-400 opacity-60" />
-      </div>
-      <div className="absolute bottom-32 left-32 animate-float">
-        <Cpu className="w-7 h-7 text-purple-400 opacity-60" />
-      </div>
-      <div className="absolute top-60 left-1/4 animate-float-delayed">
-        <Server className="w-5 h-5 text-yellow-400 opacity-60" />
-      </div>
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-5 text-center">
+        <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full border border-green-400/40 bg-green-400/10 text-green-400 font-mono text-xs sm:text-sm">
+          <span className="w-2 h-2 rounded-full bg-green-400 motion-safe:animate-pulse"></span>
+          Available for freelance projects
+        </div>
 
-      <div className="text-center z-10 px-4 max-w-5xl">
-        {/* Terminal Header */}
-        <div className="mb-8">
-          <div className="inline-block bg-black rounded-lg border border-green-400 p-4 mb-6 font-mono text-left max-w-2xl">
-            <div className="flex items-center mb-2">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <span className="ml-4 text-green-400 text-sm">vineet@devops-machine:~$</span>
-            </div>
-            <div className="text-green-400 text-sm">
-              <span className="text-gray-400"># Initializing DevOps Engineer profile...</span><br/>
-              <span className="text-blue-400">whoami</span><br/>
-              <span className="text-white">vineet.dwivedi</span><br/>
-              <span className="text-blue-400">cat /etc/specialization</span><br/>
-              <span className="text-white">kubernetes | docker | terraform | aws | ci/cd</span>
-            </div>
+        <h1 className="font-mono font-bold text-white leading-tight">
+          <span className="block text-4xl sm:text-6xl md:text-7xl">Vineet Dwivedi</span>
+          <span className="block mt-2 text-2xl sm:text-4xl md:text-5xl bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+            Freelance DevOps Engineer
+          </span>
+        </h1>
+
+        <p className="mt-6 text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          5+ years building reliable, automated and cost-efficient cloud infrastructure on AWS and Kubernetes,
+          from Terraform and CI/CD pipelines to monitoring.
+        </p>
+
+        {/* Single terminal */}
+        <div className="mt-8 mx-auto max-w-xl bg-black rounded-lg border border-green-400/60 text-left font-mono overflow-hidden">
+          <div className="flex items-center gap-2 px-3 py-2 border-b border-gray-800">
+            <span className="w-3 h-3 rounded-full bg-red-500"></span>
+            <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
+            <span className="w-3 h-3 rounded-full bg-green-500"></span>
+            <span className="ml-2 text-xs text-slate-400">vineet@devops:~</span>
+          </div>
+          <div className="px-4 py-4 text-sm sm:text-base text-green-400 min-h-[3.5rem] break-all">
+            <span className="text-slate-500">$ </span>
+            {displayText}
+            <span className="motion-safe:animate-pulse">█</span>
           </div>
         </div>
-        
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 font-mono">
-          <span className="sr-only">Vineet Dwivedi, Freelance DevOps Engineer</span>
-          <span aria-hidden="true">root@<span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">devops</span>:~#</span>
-        </h1>
-        
-        <div className="h-20 mb-8 bg-black rounded-lg border border-green-400 p-4 font-mono text-left">
-          <div className="text-green-400 text-sm mb-2">vineet@k8s-master:~$ </div>
-          <span className="text-green-400 font-mono text-lg">
-            {displayText}
-            <span className="animate-pulse text-green-400">█</span>
-          </span>
-        </div>
-        
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 font-mono">
-          {[
-            ['5+', 'Years in DevOps'],
-            ['AWS', 'EC2, EKS, RDS, VPC'],
-            ['K8s', 'Docker & Kubernetes'],
-            ['IaC', 'Terraform & Ansible'],
-          ].map(([v, l]) => (
-            <div key={l} className="bg-black border border-gray-700 rounded-lg p-4">
-              <div className="text-2xl font-bold text-green-400">{v}</div>
-              <div className="text-slate-300 text-xs mt-1">{l}</div>
+
+        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 font-mono">
+          {STATS.map(([v, l]) => (
+            <div key={l} className="bg-black/70 border border-gray-700 rounded-lg p-3 sm:p-4">
+              <div className="text-xl sm:text-2xl font-bold text-green-400">{v}</div>
+              <div className="text-slate-300 text-xs sm:text-sm mt-1">{l}</div>
             </div>
           ))}
         </div>
 
-        <p className="text-lg md:text-xl text-green-400 mb-12 max-w-3xl mx-auto leading-relaxed font-mono">
-          <span className="text-gray-400">//</span> Freelance DevOps Engineer with 5+ years of experience<br/>
-          <span className="text-gray-400">//</span> I build reliable, automated, cost-efficient cloud infrastructure
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#projects" className="bg-green-600 hover:bg-green-700 text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25 border border-green-400 text-center">
-            ./view-projects.sh
+        <div className="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-400 text-black px-7 py-3.5 rounded-lg font-mono font-bold transition-colors"
+          >
+            Hire me <ArrowRight className="w-4 h-4" />
           </a>
-          <a href="#contact" className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 border border-gray-600 text-center">
-            ./hire-me.sh
+          <a
+            href="#projects"
+            className="inline-flex items-center justify-center border border-gray-600 hover:border-green-400 text-white px-7 py-3.5 rounded-lg font-mono font-bold transition-colors"
+          >
+            View projects
           </a>
-          <button 
+          <button
             onClick={handleResumeDownload}
-            className="border border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-8 py-4 rounded-lg font-mono font-bold transition-all duration-300 flex items-center gap-2 justify-center"
+            className="inline-flex items-center justify-center gap-2 border border-green-400 text-green-400 hover:bg-green-400 hover:text-black px-7 py-3.5 rounded-lg font-mono font-bold transition-colors"
           >
             <Download className="w-4 h-4" />
-            curl -O resume.pdf
+            Resume
           </button>
         </div>
       </div>
-      
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+
+      <a href="#skills" aria-label="Scroll to skills" className="absolute bottom-5 left-1/2 -translate-x-1/2 motion-safe:animate-bounce hidden sm:block">
         <ChevronDown className="w-6 h-6 text-green-400" />
-      </div>
+      </a>
     </section>
   );
 };

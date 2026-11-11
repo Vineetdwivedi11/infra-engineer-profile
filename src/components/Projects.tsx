@@ -283,9 +283,9 @@ const Projects = () => {
                   )}
                   <a
                     href="#contact"
-                    className="flex items-center gap-2 px-4 py-2 bg-green-600 text-black rounded-lg hover:bg-green-500 transition-colors font-mono font-bold"
+                    className="inline-flex items-center gap-2 px-1 py-2 text-green-400 hover:text-green-300 font-mono text-sm underline-offset-4 hover:underline"
                   >
-                    Need something like this?
+                    Need something like this? <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
               </div>
